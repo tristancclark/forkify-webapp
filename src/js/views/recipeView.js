@@ -37,7 +37,6 @@ const createIngredient = ingredient => `
   `;
 
 export const renderRecipe = recipe => {
-  console.log("rendering recipe")
   const markup = `
     <figure class="recipe__fig">
         <img src=${recipe.image} alt=${recipe.title} class="recipe__img">
@@ -61,12 +60,12 @@ export const renderRecipe = recipe => {
             <span class="recipe__info-text"> servings</span>
 
             <div class="recipe__info-buttons">
-                <button class="btn-tiny">
+                <button class="btn-tiny btn-decrease">
                     <svg>
                         <use href="img/icons.svg#icon-circle-with-minus"></use>
                     </svg>
                 </button>
-                <button class="btn-tiny">
+                <button class="btn-tiny btn-increase">
                     <svg>
                         <use href="img/icons.svg#icon-circle-with-plus"></use>
                     </svg>
@@ -81,14 +80,12 @@ export const renderRecipe = recipe => {
         </button>
     </div>
 
-
-
     <div class="recipe__ingredients">
         <ul class="recipe__ingredient-list">
             ${recipe.ingredients.map(el => createIngredient(el)).join('')}
         </ul>
 
-        <button class="btn-small recipe__btn">
+        <button class="btn-small recipe__btn recipe__btn--add">
             <svg class="search__icon">
                 <use href="img/icons.svg#icon-shopping-cart"></use>
             </svg>
@@ -114,3 +111,17 @@ export const renderRecipe = recipe => {
 
     elements.recipe.insertAdjacentHTML('afterbegin', markup);
 };
+
+export const updateServingsIngredients = recipe => {
+  // 1. Update servings
+    document.querySelector('.recipe__info-data--people').textContent = recipe.servings;
+
+  // 2. Update ingredients
+  const countElements = Array.from(document.querySelectorAll('.recipe__count'));
+  console.log(countElements)
+  countElements.forEach((item, i) => {
+    console.log("changing")
+    item.textContent = formatCount(recipe.ingredients[i].count);
+  });
+
+}

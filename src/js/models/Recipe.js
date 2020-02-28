@@ -8,7 +8,6 @@ export default class Recipe {
   async getRecipe() {
     try {
       const res = await axios(`https://forkify-api.herokuapp.com/api/get?&rId=${this.id}`);
-      console.log(res);
       this.title = res.data.recipe.title;
       this.publisher = res.data.recipe.publisher;
       this.image = res.data.recipe.image_url;
@@ -88,5 +87,17 @@ export default class Recipe {
 
     });
     this.ingredients = newIngredients;
+  }
+
+  updateServings (type) {
+    // Servings
+    const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+    // Ingredients
+    this.ingredients.forEach((ing, i) => {
+      ing.count *= newServings / this.servings;
+    });
+
+    this.servings = newServings;
   }
 }
