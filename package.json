@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/tristancclark/forkify-webapp.git"
   },
-  "author": "",
+  "author": "Tristan Clark",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tristancclark/forkify-webapp/issues"

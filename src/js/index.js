@@ -152,7 +152,6 @@ elements.shopping.addEventListener('click', e => {
 
   // 1. Handle delete event
   if (e.target.matches('.shopping__delete, .shopping__delete *')) {
-    console.log('deleting')
     // 1.1 delete from state
     state.list.deleteItem(id);
     // 1.2 delete from UI
